@@ -6,16 +6,18 @@
 to verify yet.** These are verification requirements and a download-check
 procedure, not evidence that a release has been signed.
 
-The release owner has supplied the authored contract below, but it is not yet
-committed, integrated, run, or validated. The owner must confirm the final
+The signing contract is now committed in the private source, but is not yet
+integrated into the final release source. Parser/tests, cryptographic checks,
+and an actual signing-workflow run remain unvalidated. No Sigstore verification
+command has been executed successfully. The owner must confirm the integrated
 implementation and tested commands before executable Sigstore instructions are
 published here. No sample signatures or example digests are release proof.
 
-## Authored signing contract (not validated)
+## Committed signing contract (not validated)
 
-The proposed private-source path is `.github/workflows/release-signing.yml`
+The committed private-source path is `.github/workflows/release-signing.yml`
 with a Python standard-library helper and **Cosign v3.1.4**. That is the
-authored version pin, not a claim that a verifier was installed or tested here.
+committed version pin, not a claim that a verifier was installed or tested here.
 The final tested contract and official verifier-download checksum must be
 confirmed before use.
 
@@ -23,8 +25,9 @@ confirmed before use.
   Sigstore bundle appends `.sigstore.json` to the complete ZIP filename.
   An older local-key in-toto digest attestation is not a substitute.
 - Signed `ReleaseSigning.input.json` binds the immutable source revision,
-  version, candidate/prerelease status, approved edition matrix, review record,
-  and every ZIP's hash, size, and complete member hashes.
+  full source version, candidate/prerelease status, approved four-edition matrix,
+  review record, every ZIP's hash, size, and complete member hashes, and
+  digest-bound approval for the exact public signing metadata.
 - `ReleaseSigning.result.json` and its `.sigstore.json` bundle bind the input
   plan digest, producer run/artifact ID and transport digest, signing run and
   attempt, signer/issuer/source, and retained plan, review, ZIP, and bundle
@@ -35,7 +38,19 @@ The planned verifier checks the signed result first, then its full referenced
 inventory and individual ZIP signatures. Result retention is initially in
 private Actions artifacts; that is **not** a public download or recipient-access
 solution. Public release verification materials still need approved publication.
-This contract is not independently authenticated build provenance.
+This contract is not independently authenticated build provenance. A signing
+worker commit is not the final signer/release commit: the application owner
+must integrate the edition/version source and signing changes, then provide the
+final immutable source revision and digests. Existing pending private staging
+ZIPs cannot become approved candidates merely by signing them.
+
+All four public IDs, `Free`, `FreewithAds`, `Supporter`, and `Pro`, are required
+by the candidate signing contract; `OwnerTest` is excluded. Each ZIP must contain
+complete `EditionInfo.json` captured from that actual candidate executable's
+`--edition-info` output, matching the reviewed full version, edition ID,
+`buildLabel`, and boolean entitlements. The packaging owner must execute and
+cross-check the candidate binary and bind that capture to its hashes. The
+signer does not execute downloaded applications.
 
 ## Approved certificate identity
 
@@ -60,12 +75,12 @@ reviewed release metadata must also bind the concrete source revision/ref,
 artifact digests, and corresponding-source materials. Do not infer a source
 snapshot from a branch name alone.
 
-In addition to the exact identity and issuer, the authored verifier constrains
+In addition to the exact identity and issuer, the committed verifier constrains
 the GitHub workflow repository to `QuasarLI/CineDock`, ref to `refs/heads/main`,
 trigger to `workflow_dispatch`, and workflow SHA to the final reviewed
 40-character commit. It also requires signed-timestamp verification and does
 not bypass transparency-log or signed-certificate-timestamp checks. These are
-requirements of the authored path, not a tested command recipe.
+requirements of the unvalidated path, not a tested command recipe.
 
 ## Required verification sequence
 

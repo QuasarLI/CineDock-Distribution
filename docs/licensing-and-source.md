@@ -12,6 +12,15 @@ Notices alone, an upstream homepage, a private repository link, a successful
 build, or a signature do not close this gate. This documentation is not a claim
 that legal review or redistribution clearance is complete.
 
+Authorization to publish the required source snapshots, signing metadata, and
+this public channel is resolved; actual material completeness and release
+acceptance are not. Open material work includes the selected DLL hashes,
+configuration and static-link/dependency source-and-patch lock; exact Qt
+module/plugin/QML and bundled third-party source/relink materials; distinct
+GCC-runtime and winpthread source mappings; and SDK/helper provenance.
+A separate FFmpeg executable's version label does not establish the FFmpeg
+revision embedded in a playback DLL.
+
 ## License scope
 
 CineDock-owned source retains its MIT notice, `Copyright(c)2026QuasarLabs`.

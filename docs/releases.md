@@ -6,13 +6,16 @@
 There are no verified public edition ZIPs, signatures, or corresponding-source
 snapshots in this catalog. Private preview identifiers are not public versions.
 
-The application owner identifies the development project as **0.1.0** and is
-preparing **0.1.0-rc.1** as a first candidate. Neither identifier represents an
-accepted or published binary release.
+The current full development source label is **0.1.0-rc.1**, a first candidate,
+not an accepted or published binary release. The numeric CMake project version
+**0.1.0** is not the full release label; use the version declared by the edition
+source configuration, not a cached value or the numeric project version.
 
-Planned edition names are **Free**, **FreewithAds** (Free with Ads),
-**Supporter**, and **Pro**, as confirmed by the application owner. Final package
-identifiers, feature entitlements, and availability still require confirmation.
+Planned edition IDs are **Free**, **FreewithAds** (displayed as Free with Ads),
+**Supporter**, and **Pro**, as confirmed by the application owner. All four are
+required by the candidate signing contract; the requested Support name is
+canonicalized as Supporter. Final feature entitlements, package filenames, and
+availability still require confirmation.
 This is not a feature comparison or a promise that any edition ships today. No
 pricing, payment provider, ad network, or support SLA is announced here.
 
@@ -49,7 +52,11 @@ and [development data-use notes](https://quasarli.github.io/cinedock/privacy/).
 2. The release owner reviews an exact artifact inventory: filenames, byte sizes,
    SHA-256 digests, edition mapping, source revision/ref, dependency revisions,
    and corresponding-source archive digests. Nothing private or unrelated is
-   included.
+   included. Each ZIP must contain complete `EditionInfo.json` captured from
+   the actual candidate executable's `--edition-info` output and cross-checked
+   against the reviewed full version, edition ID, `buildLabel`, and boolean
+   entitlements. The packaging owner binds that capture to the binary/member
+   hashes; the signer does not execute downloaded applications.
 3. The [licensing and source-access gate](licensing-and-source.md) is resolved for
    those exact binaries, with complete source, dependency, build, patch, and
    applicable relink materials accessible to recipients.
@@ -57,11 +64,11 @@ and [development data-use notes](https://quasarli.github.io/cinedock/privacy/).
    [Verification](verification.md) checks those bytes, certificate identity and
    issuer, source/ref/digest bindings, and the reviewed manifest. A workflow run
    alone is insufficient.
-5. The application coordinator is the sole final asset publisher and publishes
-   only the explicitly approved assets after these gates pass. This
-   documentation repository does not dispatch signing or introduce a second
-   signing pipeline. Do not create a tag, GitHub Release, or upload source/binaries
-   before the concrete release is approved.
+5. The application coordinator is the sole final binary, source, and signature
+   asset publisher and publishes only the explicitly approved assets after
+   these gates pass. This documentation repository does not dispatch signing or
+   introduce a second signing pipeline. Do not create a tag, GitHub Release, or
+   upload source/binaries before the concrete release is approved.
 6. This catalog and the website are updated from the actual published asset
    inventory. Use genuine release and corresponding-source links; do not
    fabricate versioned URLs or advertise OwnerTest.

@@ -63,9 +63,9 @@ corresponding-source snapshot or final source-archive link is available yet.**
 
 Publish the required code and build materials, not a copy of the owner's
 working directory. Exclude secrets, credentials, signing tokens, account/client
-configuration containing private data, owner profiles, entitlement material,
-browser profiles, personal media, private diagnostics, and unrelated projects.
-OwnerTest packages and owner-specific configuration remain private.
+configuration containing private data, owner profiles, owner-specific entitlement
+credentials, browser profiles, personal media, private diagnostics, and unrelated
+projects. OwnerTest packages and owner-specific configuration remain private.
 
 Sanitization must not silently omit code, dependency materials, patches, or
 build scripts required for the distributed software. If something required
